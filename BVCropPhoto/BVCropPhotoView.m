@@ -95,13 +95,12 @@
 
     CGFloat zoomScale = 1.0;
 
-    if ( self.imageView.frame.size.width >= self.imageView.frame.size.height ) {
-        zoomScale = self.cropSize.height / self.imageView.frame.size.height;
-    } else {
-        zoomScale = self.cropSize.width / self.imageView.frame.size.width;
-    }
-
-    [self.scrollView setMinimumZoomScale:zoomScale];
+    
+    CGFloat zoomScaleHeight = self.cropSize.height / self.imageView.frame.size.height;
+    CGFloat zoomScaleWidth = self.cropSize.width / self.imageView.frame.size.width;
+    zoomScale = MAX(zoomScaleHeight, zoomScaleWidth);
+    
+    [self.scrollView setMinimumZoomScale:MIN(zoomScaleHeight, zoomScaleWidth)];
     [self.scrollView setMaximumZoomScale:self.maximumZoomScale * zoomScale];
     [self.scrollView setZoomScale:zoomScale];
 
