@@ -84,6 +84,8 @@
 
 
 - (void)setupZoomScale {
+    if (!self.sourceImage) return;
+    
     [self.imageView setImage:self.sourceImage];
     [self.imageView sizeToFit];
 
